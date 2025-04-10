@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de Dados</title>
+  <style>
+    body {
+      background-color: #2c3e50;
+      text-align: center;
+      color: #1abc9c;
+      font-family: 'Brush Script MT', cursive;
+      font-size: 2rem; /* Tamaño base más grande */
+    }
+
+    h1 {
+      font-size: 6rem; /* Aumentado */
+      margin: 30px;
+      text-shadow: 2px 2px #34495e;
+    }
+
+    .dice {
+      display: inline-block;
+      margin: 20px;
+    }
+
+    .dice p {
+      font-size: 2.5rem; /* Aumentado */
+      margin-bottom: 10px;
+    }
+
+    .dice img {
+      width: 150px;
+      height: 150px;
+    }
+
+    #resultado {
+      font-size: 3rem; /* Aumentado */
+      margin-top: 20px;
+    }
+
+    #boton {
+      background-color: #1abc9c;
+      color: red;
+      font-size: 2.5rem; /* Aumentado */
+      padding: 15px 30px;
+      margin-top: 30px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #boton:hover {
+      background-color: #16a085;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="resultado">¡Lanza los Dados!</h1>
+
+  <div class="dice">
+    <p>jugador 1</p>
+    <img id="dado1" src="dice1.png" alt="Dado 1">
+  </div>
+
+  <div class="dice">
+    <p>jugador 2</p>
+    <img id="dado2" src="dice1.png" alt="Dado 2">
+  </div>
+
+  <br>
+  <button id="boton" onclick="lanzarDados()">Jugar de nuevo</button>
+
+  <script>
+    function lanzarDados() {
+      const dado1 = Math.floor(Math.random() * 6) + 1;
+      const dado2 = Math.floor(Math.random() * 6) + 1;
+
+      document.getElementById("dado1").src = `dice${dado1}.png`;
+      document.getElementById("dado2").src = `dice${dado2}.png`;
+
+      let mensaje = "";
+      if (dado1 > dado2) {
+        mensaje = "El jugador 1 gana.";
+      } else if (dado2 > dado1) {
+        mensaje = "Jugador 2 gana.";
+      } else {
+        mensaje = "¡Empate!";
+      }
+
+      document.getElementById("resultado").textContent = mensaje;
+    }
+  </script>
+
+</body>
+</html>
